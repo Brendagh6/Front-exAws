@@ -37,7 +37,7 @@ const Login = () => {
         if (bloqueado) return;
 
         try {
-            const response = await axios.post('http://3.129.44.232:5000/usuarios/login', usuario);
+            const response = await axios.post('https://3.129.44.232:5000/usuarios/login', usuario);
             const { user, access_token } = response.data;
 
             if (!user) {
