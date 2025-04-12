@@ -51,21 +51,7 @@ const Login = () => {
             navigate('/credencial');
         } catch (error) {
             console.error('Error en la solicitud:', error.response?.data || error.message);
-            const nuevosIntentos = intentos + 1;
-            setIntentos(nuevosIntentos);
-            localStorage.setItem('intentosFallidos', nuevosIntentos);
             setError('Credenciales incorrectas. Inténtalo de nuevo.');
-
-            if (nuevosIntentos >= 3) {
-                const tiempoDesbloqueo = new Date().getTime() + 3 * 60 * 1000;
-                localStorage.setItem('bloqueoTiempo', tiempoDesbloqueo);
-                setBloqueado(true);
-                setTimeout(() => {
-                    setBloqueado(false);
-                    localStorage.removeItem('bloqueoTiempo');
-                    localStorage.setItem('intentosFallidos', '0');
-                }, 3 * 60 * 1000);
-            }
         }
     };
 
